@@ -3,9 +3,9 @@
 import PackageDescription
 
 let package = Package(
-    name: "99-problems",
+    name: "Swift99Problems",
     products: [
-        .library(name: "99-problems", targets: ["LinkedLists"]),
+        .library(name: "Swift99Problems", targets: ["LinkedLists"]),
     ],
     targets: [
         .target(
@@ -13,7 +13,7 @@ let package = Package(
             path: "LinkedLists"
         ),
         .testTarget(
-            name: "99-problems-tests",
+            name: "Swift99ProblemsTests",
             dependencies: ["LinkedLists"],
             path: "Tests"
         ),
