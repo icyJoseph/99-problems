@@ -1,19 +1,17 @@
 class List<T> {
-    var value: T
+    var value: T?
     var next: List<T>?
 
     convenience init?(_ values: T...) {
         self.init(Array(values))
     }
 
-    init?(_ values: [T]) {
-        guard let first = values.first else {
-            return nil
+    init(_ values: [T]) {
+        value = values.first
+
+        if values.count > 1 {
+            next = List(Array(values.suffix(from: 1)))
         }
-
-        value = first
-
-        next = List(Array(values.suffix(from: 1)))
     }
 }
 
@@ -43,6 +41,6 @@ extension List {
     subscript(index: Int) -> T? {
         if index == 0 { return value }
 
-        return self[index - 1]
+        return next?[index - 1]
     }
 }
