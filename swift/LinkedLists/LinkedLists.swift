@@ -1,5 +1,3 @@
-import XCTest
-
 class List<T> {
     var value: T
     var next: List<T>?
@@ -28,24 +26,17 @@ extension List {
 
         return current.value
     }
-}
 
-func main() {
-    if let list = List([1, 2, 3, 4]), let last = list.last {
-        print(last, last == 4)
-    }
+    var pennultimate: T? {
+        var current = self
 
-    if let list = List([-1, 22, 113, 224]), let last = list.last {
-        print(last, last == 224)
-    }
-}
+        while let node = current.next {
+            if node.next == nil {
+                return current.value
+            }
+            current = node
+        }
 
-func testLinkedListLast() {
-    let source = Array(0 ..< 100)
-
-    let expected = source.last
-
-    if let list = List(source), let last = list.last {
-        XCTAssertEqual(expected, last)
+        return current.value
     }
 }
