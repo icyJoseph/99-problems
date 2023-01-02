@@ -35,4 +35,14 @@ class LinkedListTests: XCTestCase {
 
         XCTAssertEqual(0, unit?.pennultimate)
     }
+
+    func testSubscript() {
+        let source = [-1, -2, 0, 1, 2]
+
+        let linked = List(source)
+
+        XCTAssertEqual(linked![0], -1)
+        XCTAssertEqual(linked![2], 0)
+        XCTAssertEqual(linked![source.count - 1], 2)
+    }
 }

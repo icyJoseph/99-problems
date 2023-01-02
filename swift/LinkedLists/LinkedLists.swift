@@ -39,4 +39,10 @@ extension List {
 
         return current.value
     }
+
+    subscript(index: Int) -> T? {
+        if index == 0 { return value }
+
+        return self[index - 1]
+    }
 }
