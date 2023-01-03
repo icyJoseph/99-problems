@@ -1,4 +1,4 @@
-class List<T> {
+class List<T: Equatable>: Equatable {
     var value: T?
     var next: List<T>?
 
@@ -12,6 +12,17 @@ class List<T> {
         if values.count > 1 {
             next = List(Array(values.suffix(from: 1)))
         }
+    }
+
+    static func == (lhs: List, rhs: List) -> Bool {
+        if lhs.length == 0, rhs.length == 0 { return true }
+        if lhs.length != rhs.length { return false }
+
+        for index in 0 ... lhs.length - 1 {
+            if lhs[index] != rhs[index] { return false }
+        }
+
+        return true
     }
 }
 
@@ -42,5 +53,39 @@ extension List {
         if index == 0 { return value }
 
         return next?[index - 1]
+    }
+
+    var length: Int {
+        return value != nil ? 1 + (next?.length ?? 0) : 0
+    }
+
+    func debug() -> [T?] {
+        if length == 0 {
+            return []
+        }
+
+        var ret = [self[0]]
+
+        ret.append(contentsOf: next?.debug() ?? [])
+
+        return ret
+    }
+
+    func reverse() {
+        var rest = next
+        next = nil
+
+        while rest != nil {
+            let current = rest
+
+            let tmp = List([])
+            tmp.value = value
+            tmp.next = next
+
+            value = current?.value
+            next = tmp
+
+            rest = rest?.next
+        }
     }
 }

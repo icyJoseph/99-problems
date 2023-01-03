@@ -45,4 +45,32 @@ class LinkedListTests: XCTestCase {
         XCTAssertEqual(linked[2], 0)
         XCTAssertEqual(linked[source.count - 1], 2)
     }
+
+    func testLength() {
+        let source = Array(0 ... Int.random(in: 10 ... 20))
+
+        let linked = List(source)
+
+        XCTAssertEqual(source.count, linked.length)
+
+        XCTAssertEqual(0, List<Int>([]).length)
+    }
+
+    func testReverse() {
+        var linked = List([0, 1])
+        linked.reverse()
+
+        XCTAssertEqual(linked, List([1, 0]))
+
+        linked = List([0, 1, 2, 3])
+        linked.reverse()
+
+        XCTAssertEqual(List([3, 2, 1, 0]), linked)
+
+        linked = List<Int>([])
+
+        linked.reverse()
+
+        XCTAssertEqual(List<Int>([]), linked)
+    }
 }
