@@ -90,5 +90,13 @@ class LinkedListTests: XCTestCase {
         linked = List([1, 2, 2, 1])
 
         XCTAssertTrue(linked.isPalindrome())
+
+        // edge cases
+
+        linked = List<Int>([])
+        XCTAssertTrue(linked.isPalindrome())
+
+        linked = List([0])
+        XCTAssertTrue(linked.isPalindrome())
     }
 }
