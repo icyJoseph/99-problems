@@ -1,4 +1,4 @@
-class List<T: Equatable>: Equatable {
+class List<T> {
     var value: T?
     var next: List<T>?
 
@@ -14,19 +14,6 @@ class List<T: Equatable>: Equatable {
         }
     }
 
-    static func == (lhs: List, rhs: List) -> Bool {
-        if lhs.length == 0, rhs.length == 0 { return true }
-        if lhs.length != rhs.length { return false }
-
-        for index in 0 ... lhs.length - 1 {
-            if lhs[index] != rhs[index] { return false }
-        }
-
-        return true
-    }
-}
-
-extension List {
     var last: T? {
         var current = self
         while let node = current.next {
@@ -87,6 +74,19 @@ extension List {
 
             rest = rest?.next
         }
+    }
+}
+
+extension List: Equatable where T: Equatable {
+    static func == (lhs: List, rhs: List) -> Bool {
+        if lhs.length == 0, rhs.length == 0 { return true }
+        if lhs.length != rhs.length { return false }
+
+        for index in 0 ... lhs.length - 1 {
+            if lhs[index] != rhs[index] { return false }
+        }
+
+        return true
     }
 
     func isPalindrome() -> Bool {
