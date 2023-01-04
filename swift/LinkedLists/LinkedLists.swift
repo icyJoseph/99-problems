@@ -88,4 +88,16 @@ extension List {
             rest = rest?.next
         }
     }
+
+    func isPalindrome() -> Bool {
+        if length < 2 { return true }
+
+        let middle = length / 2 // do not include it
+
+        for index in 0 ..< middle {
+            if self[index] != self[length - index - 1] { return false }
+        }
+
+        return true
+    }
 }

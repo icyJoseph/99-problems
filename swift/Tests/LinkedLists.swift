@@ -73,4 +73,22 @@ class LinkedListTests: XCTestCase {
 
         XCTAssertEqual(List<Int>([]), linked)
     }
+
+    func testIsPalindrome() {
+        var linked = List([0, 1, 2, 3])
+
+        XCTAssertFalse(linked.isPalindrome())
+
+        linked = List([3, 1, 2, 3])
+
+        XCTAssertFalse(linked.isPalindrome())
+
+        linked = List([1, 2, 3, 2, 1])
+
+        XCTAssertTrue(linked.isPalindrome())
+
+        linked = List([1, 2, 2, 1])
+
+        XCTAssertTrue(linked.isPalindrome())
+    }
 }
