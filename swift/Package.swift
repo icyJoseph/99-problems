@@ -5,16 +5,22 @@ import PackageDescription
 let package = Package(
     name: "Swift99Problems",
     products: [
-        .library(name: "Swift99Problems", targets: ["LinkedLists"]),
+        .library(name: "Swift99Problems", targets: ["LinkedLists", "Arithmetic"]),
     ],
     targets: [
         .target(
             name: "LinkedLists",
             path: "LinkedLists"
         ),
+
+        .target(
+            name: "Arithmetic",
+            path: "Arithmetic"
+        ),
+
         .testTarget(
             name: "Swift99ProblemsTests",
-            dependencies: ["LinkedLists"],
+            dependencies: ["LinkedLists", "Arithmetic"],
             path: "Tests"
         ),
     ]
