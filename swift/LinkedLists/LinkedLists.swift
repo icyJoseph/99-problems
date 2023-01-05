@@ -2,7 +2,7 @@ class List<T> {
     var value: T?
     var next: List<T>?
 
-    convenience init?(_ values: T...) {
+    convenience init(_ values: T...) {
         self.init(Array(values))
     }
 
@@ -139,5 +139,21 @@ extension List: Equatable where T: Equatable {
         }
 
         return true
+    }
+
+    func compress() {
+        var current = self
+        var rest = next
+
+        while rest != nil {
+            if current.value == rest!.value {
+                current.next = nil
+            } else {
+                current.next = rest
+                current = rest!
+            }
+
+            rest = rest!.next
+        }
     }
 }

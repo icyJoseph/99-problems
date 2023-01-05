@@ -108,4 +108,14 @@ class LinkedListTests: XCTestCase {
         XCTAssertEqual(flat.length, 6)
         XCTAssertEqual(flat.debug().compactMap { $0 as? Int }, [1, 1, 2, 3, 5, 8])
     }
+
+    func testCompress() {
+        let linked = List("a", "a", "a", "a", "b", "c", "c", "a", "a", "d", "e", "e", "e", "e")
+        linked.compress()
+        XCTAssertEqual(linked, List("a", "b", "c", "a", "d", "e"))
+
+        let linked2 = List(0, 0, 0, 0, 0)
+        linked2.compress()
+        XCTAssertEqual(linked2, List(0))
+    }
 }
