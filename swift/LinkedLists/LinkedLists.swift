@@ -75,6 +75,46 @@ class List<T> {
             rest = rest?.next
         }
     }
+
+    func append(_ list: List) {
+        if next == nil {
+            next = list
+        } else {
+            next!.append(list)
+        }
+    }
+
+    func flatten() -> List<T> {
+        var acc = [T]()
+
+        var current = self
+
+        while current.next != nil {
+            var stack = [List]()
+
+            stack.append(current)
+
+            while stack.count > 0 {
+                if let node = stack.popLast() {
+                    if let list = node.value as? List {
+                        stack.append(list)
+                    } else {
+                        if node.value != nil {
+                            acc.append(node.value!)
+                        }
+
+                        if node.next != nil {
+                            stack.append(node.next!)
+                        }
+                    }
+                }
+            }
+
+            current = current.next!
+        }
+
+        return List(acc)
+    }
 }
 
 extension List: Equatable where T: Equatable {

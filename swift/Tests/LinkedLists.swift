@@ -99,4 +99,13 @@ class LinkedListTests: XCTestCase {
         linked = List([0])
         XCTAssertTrue(linked.isPalindrome())
     }
+
+    func testFlatten() {
+        let linked = List<Any>([List<Any>([1, 1]), 2, List<Any>([3, List<Any>([5, 8])])])
+
+        let flat = linked.flatten()
+
+        XCTAssertEqual(flat.length, 6)
+        XCTAssertEqual(flat.debug().compactMap { $0 as? Int }, [1, 1, 2, 3, 5, 8])
+    }
 }
