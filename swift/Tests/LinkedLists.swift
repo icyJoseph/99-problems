@@ -53,55 +53,55 @@ class LinkedListTests: XCTestCase {
 
         XCTAssertEqual(source.count, linked.length)
 
-        XCTAssertEqual(0, List<Int>([]).length)
+        XCTAssertEqual(0, List<Int>().length)
     }
 
     func testReverse() {
-        var linked = List([0, 1])
+        var linked = List(0, 1)
         linked.reverse()
 
-        XCTAssertEqual(linked, List([1, 0]))
+        XCTAssertEqual(linked, List(1, 0))
 
-        linked = List([0, 1, 2, 3])
+        linked = List(0, 1, 2, 3)
         linked.reverse()
 
-        XCTAssertEqual(List([3, 2, 1, 0]), linked)
+        XCTAssertEqual(List(3, 2, 1, 0), linked)
 
-        linked = List<Int>([])
+        linked = List<Int>()
 
         linked.reverse()
 
-        XCTAssertEqual(List<Int>([]), linked)
+        XCTAssertEqual(List<Int>(), linked)
     }
 
     func testIsPalindrome() {
-        var linked = List([0, 1, 2, 3])
+        var linked = List(0, 1, 2, 3)
 
         XCTAssertFalse(linked.isPalindrome())
 
-        linked = List([3, 1, 2, 3])
+        linked = List(3, 1, 2, 3)
 
         XCTAssertFalse(linked.isPalindrome())
 
-        linked = List([1, 2, 3, 2, 1])
+        linked = List(1, 2, 3, 2, 1)
 
         XCTAssertTrue(linked.isPalindrome())
 
-        linked = List([1, 2, 2, 1])
+        linked = List(1, 2, 2, 1)
 
         XCTAssertTrue(linked.isPalindrome())
 
         // edge cases
 
-        linked = List<Int>([])
+        linked = List<Int>()
         XCTAssertTrue(linked.isPalindrome())
 
-        linked = List([0])
+        linked = List(0)
         XCTAssertTrue(linked.isPalindrome())
     }
 
     func testFlatten() {
-        let linked = List<Any>([List<Any>([1, 1]), 2, List<Any>([3, List<Any>([5, 8])])])
+        let linked = List<Any>(List<Any>(1, 1), 2, List<Any>(3, List<Any>(5, 8)))
 
         let flat = linked.flatten()
 
