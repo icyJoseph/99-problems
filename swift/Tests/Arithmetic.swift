@@ -23,4 +23,13 @@ class ArithmeticTest: XCTestCase {
         XCTAssertEqual(Int.gcd(20, 25), 5)
         XCTAssertEqual(Int.gcd(-24, -12), 12)
     }
+
+    func testCoprime() {
+        XCTAssertTrue(35.isCoprimeTo(64))
+        XCTAssertTrue(37.isCoprimeTo(23))
+        XCTAssertTrue(24.isCoprimeTo(5))
+
+        XCTAssertFalse(36.isCoprimeTo(64))
+        XCTAssertFalse(24.isCoprimeTo(6))
+    }
 }

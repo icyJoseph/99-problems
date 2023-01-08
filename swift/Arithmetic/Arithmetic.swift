@@ -44,4 +44,8 @@ extension Int {
 
         return gcd(right, left % right)
     }
+
+    func isCoprimeTo(_ other: Int) -> Bool {
+        Int.gcd(self, other) == 1
+    }
 }
