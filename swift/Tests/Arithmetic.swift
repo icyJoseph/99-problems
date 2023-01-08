@@ -32,4 +32,22 @@ class ArithmeticTest: XCTestCase {
         XCTAssertFalse(36.isCoprimeTo(64))
         XCTAssertFalse(24.isCoprimeTo(6))
     }
+
+    func testTotient() {
+        XCTAssertEqual(1.totient, 1)
+        XCTAssertEqual(10.totient, 4)
+        XCTAssertEqual(11.totient, 10)
+        XCTAssertEqual(19.totient, 18)
+        XCTAssertEqual(57.totient, 36)
+        XCTAssertEqual(100.totient, 40)
+    }
+
+    func testPrimeFactors() {
+        XCTAssertEqual(315.primeFactors, [3, 3, 5, 7])
+        XCTAssertEqual(24.primeFactors, [2, 2, 2, 3])
+        XCTAssertEqual(6.primeFactors, [2, 3])
+        XCTAssertEqual(122.primeFactors, [2, 61])
+        XCTAssertEqual(100.primeFactors, [2, 2, 5, 5])
+        XCTAssertEqual((2 * 2 * 2 * 3 * 7 * 5).primeFactors, [2, 2, 2, 3, 5, 7])
+    }
 }

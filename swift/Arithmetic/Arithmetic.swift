@@ -48,4 +48,58 @@ extension Int {
     func isCoprimeTo(_ other: Int) -> Bool {
         Int.gcd(self, other) == 1
     }
+
+    var totient: Int {
+        var phi = Array(0 ... self)
+
+        var pointer = 2
+
+        while pointer < phi.count {
+            if phi[pointer] == pointer {
+                var delta = pointer
+
+                while delta < phi.count {
+                    phi[delta] -= phi[delta] / pointer
+                    delta += pointer
+                }
+            }
+
+            pointer += 1
+        }
+
+        return phi[self]
+    }
+
+    var primeFactors: [Int] {
+        var num = self
+
+        var sieve = (0 ... self).map { _ in true }
+
+        var result = [Int]()
+        var factor = 2
+
+        while num != 1 {
+            if sieve[factor] {
+                if num % factor == 0 {
+                    num = num / factor
+
+                    result.append(factor)
+
+                    var delta = factor * factor
+
+                    while delta < self {
+                        sieve[delta] = false
+
+                        delta += factor
+                    }
+
+                    factor = 1
+                }
+            }
+
+            factor += 1
+        }
+
+        return result
+    }
 }
