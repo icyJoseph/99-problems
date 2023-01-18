@@ -78,12 +78,45 @@ extension Int {
         var result = [Int]()
         var factor = 2
 
-        while num != 1 {
+        while num != 1, num != 0 {
             if sieve[factor] {
                 if num % factor == 0 {
                     num = num / factor
 
                     result.append(factor)
+
+                    var delta = factor * factor
+
+                    while delta < self {
+                        sieve[delta] = false
+
+                        delta += factor
+                    }
+
+                    factor = 1
+                }
+            }
+
+            factor += 1
+        }
+
+        return result
+    }
+
+    var primeFactorMultiplicity: [Int: Int] {
+        var num = self
+        var result: [Int: Int] = [:]
+
+        var sieve = (0 ... self).map { _ in true }
+
+        var factor = 2
+
+        while num != 1, num != 0 {
+            if sieve[factor] {
+                if num % factor == 0 {
+                    num = num / factor
+
+                    result[factor, default: 0] += 1
 
                     var delta = factor * factor
 

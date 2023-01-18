@@ -49,5 +49,14 @@ class ArithmeticTest: XCTestCase {
         XCTAssertEqual(122.primeFactors, [2, 61])
         XCTAssertEqual(100.primeFactors, [2, 2, 5, 5])
         XCTAssertEqual((2 * 2 * 2 * 3 * 7 * 5).primeFactors, [2, 2, 2, 3, 5, 7])
+        XCTAssertEqual(0.primeFactors, [])
+        XCTAssertEqual(1.primeFactors, [])
+    }
+
+    func testPrimeFactorMultiplicity() {
+        XCTAssertEqual((2 * 2 * 2 * 3 * 5 * 7 * 5).primeFactorMultiplicity, [2: 3, 3: 1, 5: 2, 7: 1])
+        XCTAssertEqual((3 * 3 * 5 * 7 * 5).primeFactorMultiplicity, [3: 2, 5: 2, 7: 1])
+        XCTAssertEqual(0.primeFactorMultiplicity, [:])
+        XCTAssertEqual(1.primeFactorMultiplicity, [:])
     }
 }
